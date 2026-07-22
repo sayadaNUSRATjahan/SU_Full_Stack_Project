@@ -6,7 +6,9 @@
     background-color: rgb(236, 225, 225);
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    margin: 20px auto;
 }
 .post{
     width: 60%;
