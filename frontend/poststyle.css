@@ -1,6 +1,25 @@
 *{
      font-family: "Poppins", sans-serif;
 }
+.header{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+.logout-btn{
+    background-color: red;
+    color: aliceblue;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.logout-btn:hover{
+    background-color: rgb(78, 9, 9);
+    cursor: pointer;
+}
 #post-container{
     width: 90%;
     background-color: rgb(236, 225, 225);

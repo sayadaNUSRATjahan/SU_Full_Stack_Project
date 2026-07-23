@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="poststyle.css">
 </head>
 
-<body>
-    <h1>Hello,username</h1>
+<body onload="checkloggedInUser(); onload=showloggedUserName()">;
+    <div class="header">
+    <h1>Hello,<span id="logged-username">Username</span></h1>
+    <button onclick="logOut()" class="logout-btn">log out</button>
+    </div>
 
     <section id="post-container">
         <!-- post -->
