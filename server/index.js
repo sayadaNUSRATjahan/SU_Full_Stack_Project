@@ -111,7 +111,28 @@ app.post('/postComment',(req,res)=>{
 
     });
 });
+//adding a new post
+app.post('/addNewPost',(req,res)=>{
+    //destructure the request body object
+    const{postedUserID,postedTime,postTest,postedImgURL}=req.body;
 
+    //sql query
+    //sql injection attack
+    let sqlQueryForAddingNewPost=`INSERT INTO posts (id, postedUserID, postedTime, postTest, postedImgURL) VALUES (NULL,?,?,?,?)`;
+    let query=db.query(sqlQueryForAddingNewPost,[postedUserID,postedTime,postTest,postedImgURL],(err,result)=>{
+        if(err){
+            console.log("Error while adding a new post in database",err);
+            throw err;
+        }
+        else
+        {
+            res.send(result);
+        }
+
+    })
+
+
+});
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
 });

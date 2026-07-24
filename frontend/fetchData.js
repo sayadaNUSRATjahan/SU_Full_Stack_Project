@@ -1,30 +1,28 @@
-const showloggedUserName=()=>{
-    const userNameElement=document.getElementById('logged-username');
+const showloggedUserName = () => {
+    const userNameElement = document.getElementById('logged-username');
 
     //find username from local storage
-    let user=localStorage.getItem('loggedInUser');
-    if(user)
-    {
-        user=JSON.parse(user);
+    let user = localStorage.getItem('loggedInUser');
+    if (user) {
+        user = JSON.parse(user);
     }
 
     //show username in the webpage
-    userNameElement.innerHTML=user.name;
+    userNameElement.innerHTML = user.name;
 }
 
-const checkloggedInUser=()=>{
-    let user=localStorage.getItem('loggedInUser');
+const checkloggedInUser = () => {
+    let user = localStorage.getItem('loggedInUser');
 
-    if(user)
-    {
-        user=JSON.parse(user);
+    if (user) {
+        user = JSON.parse(user);
     }
-    else{
-        window.location.href= "/index.html";
+    else {
+        window.location.href = "/index.html";
     }
 
 }
-const logOut=()=>{
+const logOut = () => {
     //clearinng the local storage
     localStorage.clear();
     checkloggedInUser();
@@ -162,8 +160,7 @@ const handlePostComment = async (postID) => {
     catch (err) {
         console.log("Error while sending data to the server ", err);
     }
-    finally
-    {
+    finally {
         location.reload();
     }
 
@@ -184,7 +181,64 @@ const fetchAllCommentsOfaPost = async (id) => {
     }
 }
 
+const handleAddnewPost = async () => {
+    //getting user id from local storage
+    let user = localStorage.getItem('loggedInUser');
+    if (user) {
+        user = JSON.parse(user)
+    }
+    console.log("User:", user);
+
+    const postedUserID = user.id;
+
+    //current time of the post
+    let now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+
+    console.log("comment time:", now)
+    let timeOfPost = now.toISOString();
+
+    //DRY->do not repeat yourself
+
+    //post text
+    const postedTextElement = document.getElementById('new-post-text');
+    const postText = postedTextElement.value;
+
+    //post image
+    const PostedImageElement = document.getElementById('new-post-image');
+    const postImgURL = PostedImageElement.value;
+
+    //creating a post object
+    const postObject = {
+        postedUserID: postedUserID,
+        postedTime: timeOfPost,
+        postTest: postText,
+        postedImgURL: postImgURL,
+    }
+
+    try {
+        const res = await fetch('http://localhost:5000/addNewPost', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(postObject),
+        });
+        const data = await res.json();
+    }
+    catch (err) {
+        console.log("Error while sending data to the server ", err);
+    }
+    finally {
+        location.reload();
+    }
+
+    console.log("Sending data to sever :", postObject);
+
+
+}
+
 //this function automatically runs
-fetchAllpost(); 
+fetchAllpost();
 // showloggedUserName();
 // checkloggedInUser();

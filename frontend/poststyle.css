@@ -20,6 +20,39 @@
     background-color: rgb(78, 9, 9);
     cursor: pointer;
 }
+#new-post-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+#new-post-container article h2{
+    color: blueviolet;
+}
+#new-post-text{
+    padding: 10px;
+    margin-bottom: 10px;
+}
+#new-post-image{
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+.new-post-btn{
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(74, 207, 99, 0.923);
+    color: aliceblue;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+}
+.new-post-btn:hover{
+    background-color: rgba(6, 64, 17, 0.923);
+    cursor: pointer;
+    transition: 1s;
+}
 #post-container{
     width: 90%;
     background-color: rgb(236, 225, 225);
@@ -102,7 +135,7 @@
 }
 .post-comment-btn{
         padding: 10px;
-        background-color: rgb(95, 204, 191);
+        background-color: rgba(33, 202, 39, 0.898);
         color: aliceblue;
         border: none;
         border-radius: 5px;
